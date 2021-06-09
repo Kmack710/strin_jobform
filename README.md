@@ -81,7 +81,7 @@ FORMS = {
 
 ```lua
 
-ESX_VERSION = 1.1
+USING_QBUS = true
 
 WEBHOOKS = {
 
