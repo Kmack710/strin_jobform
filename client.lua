@@ -1,39 +1,45 @@
-ESX = nil
+QBCore = nil 
 display = false
-maxLength = 100
+maxLength = 800
 minLength = 30
 
 Citizen.CreateThread(function()
-  while ESX == nil do
-    TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+  while QBCore == nil do
+    TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
     Citizen.Wait(0)
   end
     Citizen.Wait(1000)
-  while ESX.GetPlayerData().job == nil do
+  while QBCore.Functions.GetPlayerData().job == nil do
     Citizen.Wait(1000)
   end
 
-  ESX.PlayerData = ESX.GetPlayerData()
+  QBCore.PlayerData = QBCore.Functions.GetPlayerData()
       Citizen.Wait(1000)
 end)
 
-RegisterNetEvent('esx:playerLoaded')
-AddEventHandler('esx:playerLoaded', function(xPlayer)
-  ESX.PlayerData = xPlayer
+
+
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
+AddEventHandler('QBCore:Client:OnPlayerLoaded', function(xPlayer)
+  QBCore.PlayerData = xPlayer
 end)
 
-RegisterNetEvent('esx:setJob')
-AddEventHandler('esx:setJob', function(job)
-  ESX.PlayerData.job = job
+
+
+RegisterNetEvent('QBCore:Client:OnJobUptade')
+AddEventHandler('QBCore:Client:OnJobUptade', function(job)
+  QBCore.PlayerData.job = job
 end)
+
+
 
 Citizen.CreateThread(function()
+  local Player = QBCore.Functions.GetPlayerData(source)
     while true do
         Citizen.Wait(0)
         local ped = GetPlayerPed(-1)
         local coords = GetEntityCoords(ped)
         local distanceToForm = 30000
-
         for k, v in pairs(FORMS) do
           local distance = #(coords - v.pos)
           if distance < distanceToForm then
@@ -41,14 +47,10 @@ Citizen.CreateThread(function()
           end
           if not display then
             if distance < 1.0 then
-              if ESX.PlayerData.job then
-                if ESX.PlayerData.job.name ~= k then
                   DrawText3D(v.pos, '~g~[E]~w~ '..v.label)
                   if IsControlJustReleased(0, 38) then
                     SetDisplay(true, k, v.label)
                   end
-                end
-              end
             end
           end
         end
@@ -58,44 +60,50 @@ Citizen.CreateThread(function()
     end
 end)
 
+
+
 RegisterNUICallback("send_form", function(data)
     SetDisplay(false)
     if data ~= nil then
       local wayjocLength = string.len(data.wayjoc)
       local tuabyLength = string.len(data.tuaby)
       if (wayjocLength < minLength) or (tuabyLength < minLength) then
-        ESX.ShowNotification('~r~Your form is too short - '..minLength..' min. characters!')
+        QBCore.Functions.Notify('Your form is too short'..minLength..' min. characters!', "error")
       else
         if (wayjocLength > maxLength) or (tuabyLength > maxLength) then
-          ESX.ShowNotification('~r~Your form is too long - '..maxLength..' max. characters!')
+          QBCore.Functions.Notify('Your form is too long - '..maxLength..' max. characters!', "error")
         else
           sendForm(data)
-          ESX.ShowNotification('~g~Your form has been sent to - '..data.job)
+          QBCore.Functions.Notify('Your form has been sent to - '..data.job)
         end
       end
     else
-      ESX.ShowNotification('~r~Your form is empty!')
+      QBCore.Functions.Notify('Your form is empty!', "error")
     end
 end)
 
+
+
 RegisterNUICallback("exit_form", function(data)
     if data.error ~= nil then
-      ESX.ShowNotification(data.error)
+      QBCore.Functions.Notify(data.error)
     end
     SetDisplay(false)
 end)
 
+
+
 function SetDisplay(bool, form_job, form_label)
     display = bool
     SetNuiFocus(bool, bool)
-    local firstname, lastname, phone
-    ESX.TriggerServerCallback('strin_jobform:getInfo', function(info)
-      firstname = info["firstname"]
-      lastname = info["lastname"]
-      phone = info["phone_number"]
-    end)
+    local Player = QBCore.Functions.GetPlayerData()
+    Citizen.Wait(10)
+    local firstname = Player.charinfo.firstname
+    local lastname = Player.charinfo.lastname
+    local phone = Player.charinfo.phone
     while phone == nil do
       Citizen.Wait(100)
+
     end
     SendNUIMessage({
         type = "ui",
@@ -110,13 +118,16 @@ function SetDisplay(bool, form_job, form_label)
     })
 end
 
+
+
 function sendForm(data)
   TriggerServerEvent('strin_jobform:sendWebhook', data)
 end
 
+
+
 function DrawText3D(coords, text)
   local onScreen,_x,_y=World3dToScreen2d(coords.x,coords.y,coords.z)
-  
   SetTextScale(DRAW_TEXT_SCALE.x, DRAW_TEXT_SCALE.y)
   SetTextFont(DRAW_TEXT_FONT)
   SetTextProportional(1)
@@ -130,3 +141,4 @@ function DrawText3D(coords, text)
     DrawRect(_x,_y+0.0105, 0.015+ factor, 0.035, 44, 44, 44, 100)
   end
 end
+

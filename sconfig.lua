@@ -1,4 +1,4 @@
-ESX_VERSION = 1.1 -- set 1.1 (and below) or 1.2
+USING_QBUS = true -- really doesnt matter at all 
 
 WEBHOOKS = {
     police = '',
