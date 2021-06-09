@@ -127,9 +127,11 @@ WEBHOOKS = {
 
 
 
-**My development discord (Join for more releases and information)** https://discord.gg/SP6ypNmJcp
+**
 
 
 
 You can edit this script as much as you want. Don't re-publish or sell this script. Thank you.
+- Permission Given by Strin to republish. 
+
 
