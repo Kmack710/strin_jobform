@@ -28,8 +28,6 @@ FiveM ESX Job Form Script
 
 - QBCore 
 
-- qb-phone (gcphone works too as it is basically the same thing)
-
 - discord webhook
 
 
@@ -80,7 +78,6 @@ FORMS = {
 
 - police = 'webhook url'
 
-- ESX_VERSION = 1.1 -- change to 1.1 or 1.2
 
 ```lua
 
