@@ -1,14 +1,8 @@
-QBCore = nil 
 display = false
 maxLength = 800
 minLength = 30
 
 Citizen.CreateThread(function()
-  while QBCore == nil do
-    TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
-    Citizen.Wait(0)
-  end
-    Citizen.Wait(1000)
   while QBCore.Functions.GetPlayerData().job == nil do
     Citizen.Wait(1000)
   end
