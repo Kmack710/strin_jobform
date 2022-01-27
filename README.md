@@ -1,6 +1,6 @@
 ### Created by Strin#6904 ###
 
-# Converted to Qbus by [710]Kmack710#0710 #
+# Converted to QBCore by [710]Kmack710#0710 #
 
 ### All credit goes to Strin I just converted it ###
 
