@@ -1,4 +1,4 @@
-USING_QBUS = true -- really doesnt matter at all 
+USING_QBCORE = true 
 
 WEBHOOKS = {
     police = '',

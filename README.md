@@ -14,32 +14,14 @@
 
 FiveM ESX Job Form Script
 
-
-
-
-
 #### Job Form for every FiveM RP server. Easy and simple to configurate!
 
-
-
 ### Requirements:
-
-
-
 - QBCore 
 
 - discord webhook
-
-
-
 ### Configuration:
-
-
-
 #### (Client) Form Config:
-
-
-
 - police = Job (name) for the form
 
 - pos = Position for 3d text to draw.
@@ -69,12 +51,7 @@ FORMS = {
 }
 
 ```
-
-
-
 #### (Server) Webhook Config:
-
-
 
 - police = 'webhook url'
 
@@ -93,8 +70,6 @@ WEBHOOKS = {
 
 ```
 
-
-
 ### Features:
 
 - Add as many forms as you want!
@@ -105,31 +80,17 @@ WEBHOOKS = {
 
 - Discord Embed Messages
 
-
-
 ### Showcase: 
 
 - Form UI
 
-
-
 ![Form UI](https://imgur.com/dbRgofc.png)
-
-
 
 - Discord Message
 
-
-
 ![Embed Message](https://imgur.com/s43hql6.png)
 
-
-
-
-
 **
-
-
 
 You can edit this script as much as you want. Don't re-publish or sell this script. Thank you.
 - Permission Given by Strin to republish. 

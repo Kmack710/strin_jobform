@@ -1,7 +1,7 @@
-
+local QBCore = exports['qb-core']:GetCoreObject()
 
 function getPlayersIdentifier(id)
-	if USING_QBUS == true then
+	if USING_QBCORE == true then
 		local identifier = GetPlayerIdentifiers(id)[2]
 		local cutIdentifier = string.gsub(identifier, "license:", "")
 		return cutIdentifier

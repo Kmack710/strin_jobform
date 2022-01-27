@@ -1,3 +1,4 @@
+local QBCore = exports['qb-core']:GetCoreObject()
 display = false
 maxLength = 800
 minLength = 30
@@ -12,12 +13,10 @@ Citizen.CreateThread(function()
 end)
 
 
-
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function(xPlayer)
   QBCore.PlayerData = xPlayer
 end)
-
 
 
 RegisterNetEvent('QBCore:Client:OnJobUptade')

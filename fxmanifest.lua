@@ -3,11 +3,10 @@ game 'gta5'
 
 ui_page "html/index.html"
 
-shared_script '@qb-core/import.lua'
+shared_script 'config.lua'
 
 client_scripts {
-    'client.lua',
-    'config.lua'
+    'client.lua'
 }
 
 server_scripts {
