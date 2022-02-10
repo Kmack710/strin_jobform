@@ -3,33 +3,31 @@ display = false
 maxLength = 800
 minLength = 30
 
-Citizen.CreateThread(function()
+CreateThread(function()
   while QBCore.Functions.GetPlayerData().job == nil do
-    Citizen.Wait(1000)
+    Wait(1000)
   end
 
   QBCore.PlayerData = QBCore.Functions.GetPlayerData()
-      Citizen.Wait(1000)
+      Wait(1000)
 end)
 
 
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
-AddEventHandler('QBCore:Client:OnPlayerLoaded', function(xPlayer)
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function(xPlayer)
   QBCore.PlayerData = xPlayer
 end)
 
 
-RegisterNetEvent('QBCore:Client:OnJobUptade')
-AddEventHandler('QBCore:Client:OnJobUptade', function(job)
+RegisterNetEvent('QBCore:Client:OnJobUptade', function(job)
   QBCore.PlayerData.job = job
 end)
 
 
 
-Citizen.CreateThread(function()
+CreateThread(function()
   local Player = QBCore.Functions.GetPlayerData(source)
     while true do
-        Citizen.Wait(0)
+        Wait(0)
         local ped = GetPlayerPed(-1)
         local coords = GetEntityCoords(ped)
         local distanceToForm = 30000
@@ -48,7 +46,7 @@ Citizen.CreateThread(function()
           end
         end
         if distanceToForm > LOAD_DISTANCE then
-          Citizen.Wait(2000)
+          Wait(2000)
         end
     end
 end)
