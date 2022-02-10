@@ -5,11 +5,11 @@ minLength = 30
 
 CreateThread(function()
   while QBCore.Functions.GetPlayerData().job == nil do
-    Citizen.Wait(1000)
+    Wait(1000)
   end
 
   QBCore.PlayerData = QBCore.Functions.GetPlayerData()
-      Citizen.Wait(1000)
+      Wait(1000)
 end)
 
 
